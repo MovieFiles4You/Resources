@@ -2,7 +2,7 @@
 // (c) lord krishna (c) biisal
 
 /* =========================
-   TMDb FEATURE REMOVED
+   TMDb REMOVED COMPLETELY
    ========================= */
 /*
 async function getDets() { ... }
@@ -54,14 +54,14 @@ homeBtn.addEventListener("click", () => {
 abt_chnl.addEventListener("click", () => {
     timer = 1
     chnl_link.forEach((i) => {
-        i.style.animation = `strtLoad 1s ease ${timer}s forwards, linksBtnAn 2s ease ${timer}s infinite `
+        i.style.animation = `strtLoad 1s ease ${timer}s forwards, linksBtnAn 2s ease ${timer}s infinite`
         timer += 0.3;
     });
     timer = 0
 });
 
 function bot_btn_clicked() {
-    var about_btn = document.querySelector(".about-btn")
+    let about_btn = document.querySelector(".about-btn")
     timer = 1;
     bot_links.forEach((i) => {
         i.style.animation = `linksBtnAn 2s ease ${timer}s infinite ,strtLoad 1s ease ${timer}s forwards`;
@@ -113,7 +113,7 @@ let dldBtn = document.querySelectorAll('.downloadBtn button')
 dldBtn.forEach((i) => {
     i.style.animation = `strtLoad 1s ease ${timer}s forwards, linksBtnAn 2s ease ${timer}s infinite`
     timer += 0.3;
-    i.style.setProperty("--beforestyl", `button_shine ${2 + Math.random() * 7}s ease  ${Math.random() * 10}s infinite`);
+    i.style.setProperty("--beforestyl", `button_shine ${2 + Math.random() * 7}s ease ${Math.random() * 10}s infinite`);
 })
 
 timer = 0
@@ -152,12 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================
-   EXTERNAL PLAYERS
-   ONLY VLC + MX
+   ONLY VLC + MX PLAYER
    ========================= */
 
 const videolink = window.location.href;
-const bisallink = videolink.replace("/watch/", "/");
 const videoURL = videolink.replace("/watch/", "/dl/");
 
 function vlc_player() {
@@ -166,7 +164,7 @@ function vlc_player() {
 
 function mx_player() {
     window.location.href =
-        `intent:${encodeURIComponent(videoURL)}#Intent;package=com.mxtech.videoplayer.ad;S.title=Streaming Video;end`;
+        `intent:${encodeURIComponent(videoURL)}#Intent;package=com.mxtech.videoplayer.ad;end`;
 }
 
 /* =========================
@@ -174,5 +172,5 @@ function mx_player() {
    ========================= */
 
 function bisalDownload() {
-    window.location.href = bisallink;
-      }
+    window.location.href = videolink.replace("/watch/", "/");
+}
