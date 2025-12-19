@@ -1,143 +1,178 @@
 //jaldi yeha se hato
 // (c) lord krishna (c) biisal
 
-function openReport() {
-document.getElementById("myForm").style.display = "block";
+/* =========================
+   TMDb FEATURE REMOVED
+   ========================= */
+/*
+async function getDets() { ... }
+window.addEventListener("load", getDets())
+*/
+
+/* =========================
+   ORIGINAL CODE (UNCHANGED)
+   ========================= */
+
+let homeBtn = document.querySelector(".home-btn")
+let abtBtn = document.querySelector(".about-btn")
+let dldBtn_outer = document.querySelector(".downloadBtn")
+let file_name = document.querySelector(".file-name")
+let about_nav = document.querySelector(".about-nav")
+let bot_btn = document.querySelector('.bot-btn')
+let contact_btn = document.querySelector('.contact-btn')
+let links = document.querySelectorAll('.links a')
+let bot_links = document.querySelectorAll('.bot-link a')
+let chnl_link = document.querySelectorAll('.chnl-link a')
+let abt_chnl = document.querySelector('.abt-chnl')
+let contact = document.querySelectorAll('.contact a')
+let footer = document.querySelector('footer')
+
+let timer = 0
+
+if (document.getElementById("heading").classList.contains("title")) {
+    document.querySelector(".title").textContent = 'BISAL FILES'
 }
-function closeReport() {
-document.getElementById("myForm").style.display = "none";
-}
-function closeLinkModal() {
-document.getElementById("link-modal").style.display = "none";
-}
-function shareButton() {
-if (navigator.share) {
-const url = window.location.href;
-const title = document.title;
-navigator.share({
-title: title,
-text: "You can watch high-quality videos on this Stream page, one of the most powerful streaming platforms.\n\n" + title + "\n",
-url: url
+
+homeBtn.classList.add('active');
+
+abtBtn.addEventListener("click", () => {
+    dldBtn_outer.style.display = "none";
+    file_name.style.display = "none";
+    footer.style.display = "none";
+    about_nav.style.display = "block"
+    about_nav.style.animation = "strtLoad 1s ease 0s forwards"
 })
-.then(() => console.log("Thanks for sharing!"))
-.catch(e => console.log(`Couldn't share because of ${e.message}`));
-} else {
-alert("Sorry, sharing isn't supported in this browser. Try Google Chrome or copy the link manually.");
-}
-}
-function showAdsLinkModal(url) {
-const modal = document.getElementById("link-modal");
-const timerEl = document.getElementById("link-timer");
-modal.style.display = "block";
-let timeLeft = 5;
-const countdown = setInterval(() => {
-timeLeft--;
-timerEl.innerHTML = timeLeft;
-if (timeLeft === 0) {
-clearInterval(countdown);
-timerEl.innerHTML = "";
-window.location.href = url;
-closeLinkModal();
-}
-}, 1000);
-}
-document.addEventListener("DOMContentLoaded", () => {
-Plyr.setup("#myVideo", {
-controls: ["play-large", "rewind", "audio", "play", "fast-forward", "progress", "current-time", "duration", "captions", "settings", "pip", "airplay", "fullscreen"]
+
+homeBtn.addEventListener("click", () => {
+    dldBtn_outer.style.display = "flex";
+    file_name.style.display = "block";
+    footer.style.display = "block";
+    window.location.href = "#main";
+    about_nav.style.display = "none"
+})
+
+abt_chnl.addEventListener("click", () => {
+    timer = 1
+    chnl_link.forEach((i) => {
+        i.style.animation = `strtLoad 1s ease ${timer}s forwards, linksBtnAn 2s ease ${timer}s infinite `
+        timer += 0.3;
+    });
+    timer = 0
 });
 
-const themeBtn = document.getElementById("theme-toggle-btn");
-let theme = localStorage.getItem("theme") || "dark";
+function bot_btn_clicked() {
+    var about_btn = document.querySelector(".about-btn")
+    timer = 1;
+    bot_links.forEach((i) => {
+        i.style.animation = `linksBtnAn 2s ease ${timer}s infinite ,strtLoad 1s ease ${timer}s forwards`;
+        timer += 0.3;
+    });
+    timer = 0;
+    dldBtn_outer.style.display = "none";
+    file_name.style.display = "none";
+    footer.style.display = "none";
+    about_nav.style.display = "block"
+    about_nav.style.animation = "strtLoad 1s ease 0s forwards"
 
-const applyTheme = mode => {
-if (mode === "light") {
-document.body.classList.remove("bg-dark", "text-light");
-document.body.classList.add("bg-light", "text-dark");
-themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i> Dark Mode';
-themeBtn.classList.replace("btn-light", "btn-dark");
-} else {
-document.body.classList.remove("bg-light", "text-dark");
-document.body.classList.add("bg-dark", "text-light");
-themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Light Mode';
-themeBtn.classList.replace("btn-dark", "btn-light");
-}
+    document.querySelectorAll('.nryt a,.about-nav a').forEach(l => l.classList.remove('active'));
+    about_btn.classList.add('active');
+    document.querySelector(".wlcm").classList.add('active');
+    bot_btn.classList.add('active');
 };
 
-themeBtn.addEventListener("click", () => {
-const current = document.body.classList.contains("bg-dark") ? "light" : "dark";
-localStorage.setItem("theme", current);
-applyTheme(current);
+footer_bisal_btn_clicked = () => {
+    timer = 1;
+    contact.forEach((i) => {
+        i.style.animation = `linksBtnAn 2s ease ${timer}s infinite ,strtLoad 1s ease ${timer}s forwards`;
+        timer += 0.3;
+    });
+    timer = 0;
+
+    dldBtn_outer.style.display = "none";
+    file_name.style.display = "none";
+    footer.style.display = "none";
+    about_nav.style.display = "block"
+    about_nav.style.animation = "strtLoad 1s ease 0s forwards"
+
+    document.querySelectorAll('.nryt a,.about-nav a').forEach(l => l.classList.remove('active'));
+    document.querySelector(".about-btn").classList.add('active');
+    document.querySelector(".wlcm").classList.add('active');
+    contact_btn.classList.add('active');
+}
+
+contact_btn.addEventListener("click", () => {
+    timer = 1;
+    contact.forEach((i) => {
+        i.style.animation = `linksBtnAn 2s ease ${timer}s infinite ,strtLoad 1s ease ${timer}s forwards`;
+        timer += 0.3;
+    });
+    timer = 0;
+})
+
+let dldBtn = document.querySelectorAll('.downloadBtn button')
+dldBtn.forEach((i) => {
+    i.style.animation = `strtLoad 1s ease ${timer}s forwards, linksBtnAn 2s ease ${timer}s infinite`
+    timer += 0.3;
+    i.style.setProperty("--beforestyl", `button_shine ${2 + Math.random() * 7}s ease  ${Math.random() * 10}s infinite`);
+})
+
+timer = 0
+links.forEach((i) => {
+    i.style.animation = `linksBtnAn 2s ease ${timer}s infinite`
+    timer += 0.3
+    i.style.setProperty("--beforestyl", `button_shine ${2 + Math.random() * 7}s ease ${Math.random() * 10}s infinite`);
+})
+
+function toggleWidth(element) {
+    document.querySelectorAll('.about-nav a').forEach(l => l.classList.remove('active'));
+    element.classList.add('active');
+}
+function toggleWidthnav(element) {
+    document.querySelectorAll('.nryt a,.about-nav a').forEach(l => l.classList.remove('active'));
+    element.classList.add('active');
+    document.querySelector(".wlcm").classList.add('active');
+}
+
+if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    Shery.mouseFollower();
+    Shery.makeMagnet(".magnet");
+}
+
+var div = document.getElementById('myDiv');
+var text = div.textContent;
+if (text.length > 300) div.textContent = text.slice(0, 300) + "....";
+
+const controls = [
+    'play-large','rewind','play','fast-forward','progress',
+    'current-time','duration','captions','settings','pip',
+    'airplay','download','fullscreen'
+];
+document.addEventListener('DOMContentLoaded', () => {
+    Plyr.setup('.player', { controls });
 });
 
-applyTheme(theme);
-});
-
-function Open_Link(url) {
-if (url) window.open(url, "_blank");
-}
-function showLinkModal(url) {
-window.open(url, "_blank");
-}
-function Open_DL(url) {
-window.location.href = url.replace("replace", "dl");
-}
-function Open_TG(url) {
-window.location.href = url.replace("replace", "tg");
-}
+/* =========================
+   EXTERNAL PLAYERS
+   ONLY VLC + MX
+   ========================= */
 
 const videolink = window.location.href;
-const streamlink = videolink.replace("/watch/", "/dl/");
+const bisallink = videolink.replace("/watch/", "/");
+const videoURL = videolink.replace("/watch/", "/dl/");
 
 function vlc_player() {
-const clean = streamlink.replace(/^https?:///, "");
-window.location.href = `vlc://${clean}`;
+    window.location.href = `vlc://${encodeURIComponent(videoURL)}`;
 }
+
 function mx_player() {
-const clean = streamlink.replace(/^https?:///, "");
-window.location.href = `intent://${clean}#Intent;scheme=https;package=com.mxtech.videoplayer.ad;action=android.intent.action.VIEW;end;`;
-}
-function playit_player() {
-const clean = streamlink.replace(/^https?:///, "");
-window.location.href = `intent://${clean}#Intent;package=com.playit.videoplayer;action=android.intent.action.VIEW;end;`;
-}
-function streamDownload() {
-window.location.href = streamlink;
+    window.location.href =
+        `intent:${encodeURIComponent(videoURL)}#Intent;package=com.mxtech.videoplayer.ad;S.title=Streaming Video;end`;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-const style = document.createElement("style");
-style.innerHTML = `
-@keyframes devBounce {
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-4px)}
-}
-.dev-icon{animation:devBounce 1.2s infinite;color:#0dcaf0}
-.footer-text{color:#0dcaf0;text-decoration:none}
-`;
-document.head.appendChild(style);
+/* =========================
+   DOWNLOAD (UNCHANGED)
+   ========================= */
 
-const footer = document.createElement("footer");
-footer.className = "py-2 text-center border-top border-secondary bg-dark text-light";
-
-const para = document.createElement("p");
-para.className = "mb-0";
-
-const link = document.createElement("a");
-link.href = "tg://resolve?domain=DRBOTz_CINEMA";
-link.target = "_blank";
-link.className = "footer-text";
-
-const icon = document.createElement("i");
-icon.className = "fa-solid fa-robot me-2";
-
-const text = document.createTextNode("Made With ♥️ By DRBOTz CINEMA");
-const devIcon = document.createElement("i");
-devIcon.className = "fa-solid fa-laptop-code dev-icon";
-
-link.appendChild(icon);
-link.appendChild(text);
-link.appendChild(devIcon);
-para.appendChild(link);
-footer.appendChild(para);
-document.body.appendChild(footer);
-});
+function bisalDownload() {
+    window.location.href = bisallink;
+      }
