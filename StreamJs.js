@@ -94,7 +94,7 @@ window.location.href = `vlc://${clean}`;
 }
 function mx_player() {
 const clean = streamlink.replace(/^https?:///, "");
-window.location.href = `intent://${clean}#Intent;package=com.playit.videoplayer;action=android.intent.action.VIEW;end;`;
+window.location.href = `intent://${clean}#Intent;scheme=https;package=com.mxtech.videoplayer.ad;action=android.intent.action.VIEW;end;`;
 }
 function playit_player() {
 const clean = streamlink.replace(/^https?:///, "");
