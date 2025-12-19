@@ -20,7 +20,7 @@ text: "You can watch high-quality videos on this Stream page, one of the most po
 url: url
 })
 .then(() => console.log("Thanks for sharing!"))
-.catch(e => console.log(Couldn't share because of ${e.message}));
+.catch(e => console.log(`Couldn't share because of ${e.message}`));
 } else {
 alert("Sorry, sharing isn't supported in this browser. Try Google Chrome or copy the link manually.");
 }
@@ -90,7 +90,7 @@ const streamlink = videolink.replace("/watch/", "/dl/");
 
 function vlc_player() {
 const clean = streamlink.replace(/^https?:///, "");
-window.location.href = vlc://${clean};
+window.location.href = `vlc://${clean}`;
 }
 function mx_player() {
 const clean = streamlink.replace(/^https?:///, "");
@@ -106,7 +106,14 @@ window.location.href = streamlink;
 
 document.addEventListener("DOMContentLoaded", () => {
 const style = document.createElement("style");
-style.innerHTML =   @keyframes devBounce {   0%, 100% { transform: translateY(0); }   50% { transform: translateY(-4px); }   }   .dev-icon {   display: inline-block;   animation: devBounce 1.2s infinite;   color: #0dcaf0;   margin-left: 6px;   }   .footer-text {   color: #0dcaf0;   text-decoration: none;   }  ;
+style.innerHTML = `
+@keyframes devBounce {
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+.dev-icon{animation:devBounce 1.2s infinite;color:#0dcaf0}
+.footer-text{color:#0dcaf0;text-decoration:none}
+`;
 document.head.appendChild(style);
 
 const footer = document.createElement("footer");
