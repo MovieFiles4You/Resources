@@ -221,26 +221,6 @@ if (text.length > 300) {
     div.textContent = text.slice(0, 300) + "....";
 }
 
-// video player 
-const controls = [
-    'play-large',
-    'rewind', 'play',
-    'fast-forward',
-    'progress',
-    'current-time',
-    'duration',
-    // 'mute',
-    // 'volume',
-    'captions',
-    'settings',
-    'pip',
-    'airplay',
-    'download',
-    'fullscreen'
-];
-document.addEventListener('DOMContentLoaded', () => {
-    const player = Plyr.setup('.player', { controls });
-});
 
 // disabling right click
 document.addEventListener("contextmenu", function (e) {
