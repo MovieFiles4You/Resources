@@ -239,47 +239,26 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-
 const videolink = window.location.href;
-const bisallink = videolink.replace("/watch/", "/");
+const streamlink = videolink.replace("/watch/", "/dl/");
 
 function vlc_player() {
-    const openbisallink = bisallink;
-    const openVlc = `vlc://${openbisallink}`;
-    window.location.href = openVlc;
+    const clean = streamlink.replace(/^https?:\/\//, "");
+    window.location.href = `vlc://${clean}`;
 }
 
 function mx_player() {
-    const openbisallink = bisallink;
-    const openMx = `intent:${openbisallink}#Intent;package=com.mxtech.videoplayer.ad;end`;
-    window.location.href = openMx;
+    const clean = streamlink.replace(/^https?:\/\//, "");
+    window.location.href =
+        `intent://${clean}#Intent;scheme=https;package=com.mxtech.videoplayer.ad;action=android.intent.action.VIEW;end`;
 }
 
 function playit_player() {
-    const openbisallink = bisallink;
-    const openPlayit = `playit://playerv2/video?url=${openbisallink}`;
-    window.location.href = openPlayit;
-}
-
-function s_player() {
-    const openbisallink = bisallink;
-    const openSplayer = `intent:${openbisallink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
-    window.location.href = openSplayer;
-}
-
-function km_player() {
-    const openbisallink = bisallink;
-    const openKmplayer = `intent:${openbisallink}#Intent;package=com.kmplayer;end`;
-    window.location.href = openKmplayer;
-}
-
-function hd_player() {
-    const openbisallink = bisallink;
-    const openHDplayer = `intent:${openbisallink}#Intent;package=uplayer.video.player;end`;
-    window.location.href = openHDplayer;
+    const clean = streamlink.replace(/^https?:\/\//, "");
+    window.location.href =
+        `intent://${clean}#Intent;package=com.playit.videoplayer;action=android.intent.action.VIEW;end`;
 }
 
 function bisalDownload() {
-    const openbisallink = bisallink;
-    window.location.href = openbisallink;
-  }
+    window.location.href = streamlink;
+}
